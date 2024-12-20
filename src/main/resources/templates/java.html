@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Dose Calculator</title>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+	<link rel="stylesheet" href="/css/style.css">
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+	<div class="container">
+	
+	<form action="/submit" method="POST" id="form">
+	<div class="weight-submit">
+		<label for="kg" class="kglabel">体重</label>
+		<input type="number" id="kg" name="kg" min="0" max="70" style="width:5rem;" required></input>
+		<div>kg</div>
+		<button type="submit" class="btn btn-primary">計算！</button> 
+		<div class="caution">※動作、値を保証するものではありません。 実務には使わないでください。</div>
+	</div>
+	
+	<div class="ri">
+		
+	<div class="cat kidney">
+		<div class="title">腎臓</div>
+		<label for="dmsa" class="frequently">
+			<input type="radio" id="dmsa" value="dmsa" name="ri" required>DMSA
+		</label>
+		<label for="mag3" class="frequently">
+			<input type="radio" id="mag3" value="mag3" name="ri">MAG3
+		</label>
+		<label for="dtpa">
+			<input type="radio" id="dtpa" value="dtpa" name="ri">DTPA
+		</label>		
+	</div>
+	
+	<div class="cat tumor">
+		<div class="title">腫瘍</div>
+		<label for="mibg" class="frequently">
+			<input type="radio" id="mibg" value="mibg" name="ri">MIBG (腫瘍)
+		</label>
+		<label for="ga">
+			<input type="radio" id="ga" value="ga" name="ri">クエン酸 ガリウム
+		</label>
+		<label for="mibit">
+			<input type="radio" id="mibit" value="mibit" name="ri">MIBI/TF (腫瘍)
+		</label>
+		<label for="tl">
+			<input type="radio" id="tl" value="tl" name="ri">TlCl
+		</label>
+		<label for="fdg">
+			<input type="radio" id="fdg" value="fdg" name="ri">FDG (体幹)
+		</label>
+		<label for="fdgbrain">
+			<input type="radio" id="fdgbrain" value="fdgbrain" name="ri">FDG (脳)
+		</label>
+	</div>
+	<div class="cat lungbone">
+	<div class="lung">
+		<div class="title">肺</div>
+		<label for="maa" class="frequently">
+			<input type="radio" id="maa" value="maa" name="ri">MAA
+		</label>
+	</div>
+			
+	<div class="bone">
+		<div class="title">骨</div>
+		<label for="mdp" class="frequently">
+			<input type="radio" id="mdp" value="mdp" name="ri">MDP/HMDP
+		</label>
+	</div>
+	</div>
+				
+	<div class="cat liver">
+		<div class="title">肝臓・脾臓</div>
+		<label for="pmt" class="frequently">
+			<input type="radio" id="pmt" value="pmt" name="ri">PMT
+		</label>
+		<label for="gsa">
+			<input type="radio" id="gsa" value="gsa" name="ri">GSA
+		</label>
+		<label for="snl">
+			<input type="radio" id="snl" value="snl" name="ri">スズコロイド（肝脾）
+		</label>
+		<label for="phyticl">
+			<input type="radio" id="phyticl" value="phyticl" name="ri">フィチン酸（肝脾）
+		</label>
+	</div>
+	
+	<div class="cat brain">
+		<div class="title">脳血流</div>
+		<label for="ecd" class="frequently">
+			<input type="radio" id="ecd" value="ecd" name="ri">ECD
+		</label>
+		<label for="imp" class="frequently">
+			<input type="radio" id="imp" value="imp" name="ri">IMP
+		</label>
+		<label for="hmpao">
+			<input type="radio" id="hmpao" value="hmpao" name="ri">HMPAO
+		</label>	
+		<label for="bz">
+			<input type="radio" id="bz" value="bz" name="ri">イオマゼニル
+		</label>
+	</div>
+						
+	<div class="cat heart">
+		<div class="title">心筋</div>
+		<label for="bmipp">
+			<input type="radio" id="bmipp" value="bmipp" name="ri">BMIPP
+		</label>
+		<label for="mibgh">
+			<input type="radio" id="mibgh" value="mibgh" name="ri">MIBG(心筋)
+		</label>
+		<label for="arb">
+			<input type="radio" id="arb" value="arb" name="ri">アルブミン (心プール)
+		</label>	
+		<label for="mibis1">
+			<input type="radio" id="mibis1" value="mibis1" name="ri">MIBI/TF (負荷1日法 1回目)
+		</label>
+		<label for="mibis2">
+			<input type="radio" id="mibis2" value="mibis2" name="ri">MIBI/TF (負荷1日法 2回目)
+		</label>	
+		<label for="mibi2d">
+			<input type="radio" id="mibi2d" value="mibi2d" name="ri">MIBI/TF (2日法)
+		</label>
+	</div>
+							
+	<div class="cat etc">
+		<div class="title">その他</div>
+		<label for="tcg">
+			<input type="radio" id="tcg" value="tcg" name="ri">TcO4- (胃粘膜)
+		</label>
+		<label for="tct">
+			<input type="radio" id="tct" value="tct" name="ri">TcO4- (甲状腺)
+		</label>
+		<label for="nai">
+			<input type="radio" id="nai" value="nai" name="ri">NaI
+		</label>	
+		<label for="in">
+			<input type="radio" id="in" value="in" name="ri">In-111
+		</label>
+		<label for="snma">
+			<input type="radio" id="snma" value="snma" name="ri">スズコロイド (骨髄)
+		</label>
+		<label for="sndtpa">
+			<input type="radio" id="sndtpa" value="sndtpa" name="ri">スズコロイド/ DTPA (胃排出)
+		</label>	
+		<label for="rbc">
+			<input type="radio" id="rbc" value="rbc" name="ri">RBC
+		</label>
+	</div>
+	
+	</div>
+	</form>
+	<div class="cautionfoot">※「小児核医学検査適正施行のコンセンサスガイドライン2020」の計算式を用いていますが、多項式で近似しているため特に体重の下限、上限付近で値がずれます。</div>
+	</div>
+	
+<!-- 結果表示モーダル　-->		
+	<div class="modal" id="resultModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">結果</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <h2 id="resultMessage"></h2> <!-- 結果がここに表示されます -->
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">閉じる</button>
+                </div>
+            </div>
+        </div>
+  	</div>			
+	
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+	<!-- フォームの送信・受信　-->
+	<script>
+	        $(document).ready(function () {
+	            // フォームが送信された時
+	            $('#form').on('submit', function (event) {
+					console.log('フォーム送信トリガー');
+	                event.preventDefault();  // デフォルトの送信を防ぐ
+					
+	                var formData = $(this).serialize();  // フォームデータを取得
+					console.log("AJAXリクエスト直前");
+	                // AJAXでデータをサーバーに送信
+	                $.ajax({
+	                    url: '/submit',
+	                    method: 'POST',
+	                    data: formData,
+	                    success: function (response) {
+	                        // サーバーからのレスポンスをモーダルに表示
+							console.log(response);
+	                        $('#resultMessage').html(response.result);  // サーバーから送られてきたメッセージを表示
+	                        console.log('モーダル直前');
+							$('#resultModal').modal('show');  // モーダルを表示
+	                    },
+	                    error: function () {
+	                        alert('エラーが発生しました。');
+	                    }
+	                });
+	            });
+	        });
+	    </script>
+	
+</body>
+</html>
