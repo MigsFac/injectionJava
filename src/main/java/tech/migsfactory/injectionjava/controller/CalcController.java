@@ -35,16 +35,18 @@ public class CalcController{
 		String riName = NuclideRi;
 		String result;
 		if (ri.equals("mag3")) {
-			double rasi = Math.round(kg)*0.1;
+			double rasi = kg / 10;
+			rasi = Math.round(rasi*10)/10.0;
+			
 			if(rasi>2) {rasi = 2;}
-			result = "体重：" + kg + "<br><br>薬剤名："+ riName + "<br><br>投与量："+dose +" MBq" +"<br><br><span style='font-size:1rem;'>負荷薬剤フロセミド（ラシックス）："+ rasi +" ml</span>";
+			result = "体重：" + kg +" kg"+ "<br><br>薬剤名："+ riName + "<br><br>投与量："+dose +" MBq" +"<br><br><span style='font-size:1rem;'>負荷薬剤フロセミド（ラシックス）："+ rasi +" ml</span>";
 		} else if(ri.equals("ecd") || ri.equals("imp")) {
 			double aczdouble = Math.round(kg *20);
 			int acz = (int)aczdouble ;
 			if(acz>1000) {acz = 1000;}
-			result = "体重：" + kg + "<br><br>薬剤名："+ riName + "<br><br>投与量："+dose +" MBq" +"<br><br><span style='font-size:1rem;'>負荷薬剤ダイアモックス（ACZ）："+ acz +" mg</span>";
+			result = "体重：" + kg +" kg"+ "<br><br>薬剤名："+ riName + "<br><br>投与量："+dose +" MBq" +"<br><br><span style='font-size:1rem;'>負荷薬剤ダイアモックス（ACZ）："+ acz +" mg</span>";
 		} else {
-			result = "体重：" + kg + "<br><br>薬剤名："+ riName + "<br><br>投与量："+dose +" MBq";
+			result = "体重：" + kg +" kg"+ "<br><br>薬剤名："+ riName + "<br><br>投与量："+dose +" MBq";
 		}
 		Map<String, String> response = new HashMap<>();
 		response.put("result", result);

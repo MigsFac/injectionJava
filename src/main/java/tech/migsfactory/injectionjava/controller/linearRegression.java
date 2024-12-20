@@ -28,7 +28,7 @@ public class linearRegression{
 		if (multiplication<minDose) {
 			result = minDose;
 		} else {
-			result = ((double)Math.round(multiplication * 100))/100;
+			result = ((double)Math.round(multiplication * 10))/10;
 		}
 		
 		return result;
