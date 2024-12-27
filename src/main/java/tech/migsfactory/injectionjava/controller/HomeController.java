@@ -6,10 +6,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class HomeController {
-	@GetMapping("/java")
+	@GetMapping("/")
 	public String home(Model model) {
 		model.addAttribute("message","Hello!?!");
 		
-		return "java";
+		return "index";
 	}
 }
